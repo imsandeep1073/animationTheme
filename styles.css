@@ -168,6 +168,7 @@ body {
     align-items: center;
     display: flex;
     min-height: 100vh;
+    overflow: hidden;
 }
 
 .hero-section-text-holder {
@@ -220,10 +221,42 @@ body {
     font-size: 14vw;
     font-weight: 800;
     font-family: 'Manrope', sans-serif;
+    line-height: 0.9;
+    letter-spacing: -0.02em;
 }
 
 .hero-text._02 {
     background-image: linear-gradient(to right, #eec5bd, #f3b1a5 6%, #c6caf6 61%, #dad9e9 72%);
+}
+
+/* Hero Text Animations */
+.hero-text-animated {
+    opacity: 0;
+    transform: translateY(100px) scale(0.8);
+    animation: heroTextReveal 1.5s cubic-bezier(0.23, 1, 0.32, 1) forwards;
+}
+
+.hero-text-animated[data-w-id="hero-text-meet"] {
+    animation-delay: 0.3s;
+}
+
+.hero-text-animated[data-w-id="hero-text-black"] {
+    animation-delay: 0.6s;
+}
+
+@keyframes heroTextReveal {
+    0% {
+        opacity: 0;
+        transform: translateY(100px) scale(0.8);
+    }
+    50% {
+        opacity: 0.7;
+        transform: translateY(20px) scale(0.95);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
 }
 
 .hero-text-blur {
@@ -249,6 +282,25 @@ body {
     display: flex;
     position: relative;
     top: 6%;
+    opacity: 0;
+    transform: translateY(80px) scale(0.9);
+    animation: iphoneReveal 1.8s cubic-bezier(0.23, 1, 0.32, 1) forwards;
+    animation-delay: 0.9s;
+}
+
+@keyframes iphoneReveal {
+    0% {
+        opacity: 0;
+        transform: translateY(80px) scale(0.9);
+    }
+    60% {
+        opacity: 0.8;
+        transform: translateY(10px) scale(0.98);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
 }
 
 .iphone-image {
@@ -304,6 +356,21 @@ body {
     display: flex;
     align-items: center;
     text-align: center;
+    opacity: 0;
+    transform: translateY(50px);
+    animation: heroContentReveal 1.2s cubic-bezier(0.23, 1, 0.32, 1) forwards;
+    animation-delay: 1.2s;
+}
+
+@keyframes heroContentReveal {
+    0% {
+        opacity: 0;
+        transform: translateY(50px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 .hero-paragraph-holder {
@@ -380,6 +447,21 @@ body {
 .logo-grid-holder {
     margin-top: 100px;
     text-align: center;
+    opacity: 0;
+    transform: translateY(40px);
+    animation: logoGridReveal 1s cubic-bezier(0.23, 1, 0.32, 1) forwards;
+    animation-delay: 1.5s;
+}
+
+@keyframes logoGridReveal {
+    0% {
+        opacity: 0;
+        transform: translateY(40px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 .logo-grid {
@@ -393,17 +475,41 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
+    opacity: 0;
+    transform: translateY(20px);
+    animation: logoItemReveal 0.8s cubic-bezier(0.23, 1, 0.32, 1) forwards;
+}
+
+.logo-small-container:nth-child(1) { animation-delay: 1.6s; }
+.logo-small-container:nth-child(2) { animation-delay: 1.7s; }
+.logo-small-container:nth-child(3) { animation-delay: 1.8s; }
+.logo-small-container:nth-child(4) { animation-delay: 1.9s; }
+.logo-small-container:nth-child(5) { animation-delay: 2.0s; }
+.logo-small-container:nth-child(6) { animation-delay: 2.1s; }
+.logo-small-container:nth-child(7) { animation-delay: 2.2s; }
+.logo-small-container:nth-child(8) { animation-delay: 2.3s; }
+
+@keyframes logoItemReveal {
+    0% {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 .logo-small {
     height: 40px;
     width: auto;
     opacity: 0.6;
-    transition: opacity 0.3s;
+    transition: opacity 0.3s, transform 0.3s;
 }
 
 .logo-small:hover {
     opacity: 1;
+    transform: scale(1.1);
 }
 
 .fade-in-move-on-scroll p {
@@ -1395,4 +1501,117 @@ body {
     -webkit-background-clip: text;
     background-clip: text;
     -webkit-text-fill-color: transparent;
+}
+
+/* Hero Section Enhanced Styles */
+.hero-loaded {
+    overflow: visible;
+}
+
+.hero-element-loaded {
+    animation-play-state: running !important;
+}
+
+/* Enhanced Hero Text Effects */
+.hero-text-wrapper {
+    position: relative;
+    overflow: hidden;
+}
+
+.hero-text-wrapper::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+    animation: shimmer 3s ease-in-out infinite;
+    animation-delay: 2s;
+}
+
+@keyframes shimmer {
+    0% {
+        left: -100%;
+    }
+    50% {
+        left: 100%;
+    }
+    100% {
+        left: 100%;
+    }
+}
+
+/* Enhanced iPhone Effects */
+.iphone-holder::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(238,197,189,0.1) 0%, transparent 70%);
+    animation: pulse 4s ease-in-out infinite;
+    animation-delay: 1.5s;
+    pointer-events: none;
+}
+
+@keyframes pulse {
+    0%, 100% {
+        transform: scale(1);
+        opacity: 0.3;
+    }
+    50% {
+        transform: scale(1.1);
+        opacity: 0.1;
+    }
+}
+
+/* Form Enhanced Styles */
+.from-wra-er {
+    position: relative;
+}
+
+.from-wra-er::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(135deg, rgba(238,197,189,0.1), rgba(198,202,246,0.1));
+    border-radius: 100px;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    pointer-events: none;
+}
+
+.from-wra-er:hover::before {
+    opacity: 1;
+}
+
+/* Enhanced Logo Grid */
+.logo-grid {
+    position: relative;
+}
+
+.logo-grid::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(45deg, transparent 48%, rgba(255,255,255,0.05) 50%, transparent 52%);
+    animation: gridScan 8s linear infinite;
+    pointer-events: none;
+}
+
+@keyframes gridScan {
+    0% {
+        transform: translateX(-100%);
+    }
+    100% {
+        transform: translateX(100%);
+    }
 }
