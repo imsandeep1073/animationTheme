@@ -38,6 +38,7 @@ document.addEventListener('DOMContentLoaded', function() {
         observer.observe(el);
     });
 
+<<<<<<< HEAD
     // Parallax effect for hero section
     const heroTextHolder = document.querySelector('.hero-text-holder');
     const iphoneHolder = document.querySelector('.iphone-holder');
@@ -53,6 +54,39 @@ document.addEventListener('DOMContentLoaded', function() {
         if (iphoneHolder) {
             iphoneHolder.style.transform = `translateY(${rate * 0.3}px)`;
         }
+=======
+    // Enhanced parallax effect for hero section
+    const heroTextHolder = document.querySelector('.hero-text-holder');
+    const iphoneHolder = document.querySelector('.iphone-holder');
+    const heroSection = document.querySelector('[data-w-id="bbb1681c-62a0-7375-a529-1c7bec5a4a0e"]');
+    
+    // Hero section scroll effects
+    window.addEventListener('scroll', function() {
+        const scrolled = window.pageYOffset;
+        const rate = scrolled * -0.3;
+        const heroHeight = heroSection ? heroSection.offsetHeight : 0;
+        const scrollProgress = Math.min(scrolled / heroHeight, 1);
+        
+        if (heroTextHolder) {
+            // Parallax movement with slight rotation
+            heroTextHolder.style.transform = `translateY(${rate}px) perspective(1000px) rotateX(${scrollProgress * 5}deg)`;
+        }
+        
+        if (iphoneHolder) {
+            // iPhone moves slower and scales slightly
+            const iphoneRate = rate * 0.5;
+            const scale = 1 - (scrollProgress * 0.1);
+            iphoneHolder.style.transform = `translateY(${iphoneRate}px) scale(${scale})`;
+        }
+        
+        // Add blur effect to hero text on scroll
+        const heroTexts = document.querySelectorAll('.hero-text-animated');
+        heroTexts.forEach(text => {
+            const blur = scrollProgress * 10;
+            text.style.filter = `blur(${blur}px)`;
+            text.style.opacity = 1 - (scrollProgress * 0.7);
+        });
+>>>>>>> feature/website-replica
     });
 
     // Form handling
@@ -271,6 +305,35 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
+<<<<<<< HEAD
+=======
+    // Initialize hero section animations
+    function initHeroAnimations() {
+        // Force trigger hero animations on load
+        const heroSection = document.querySelector('[data-w-id="bbb1681c-62a0-7375-a529-1c7bec5a4a0e"]');
+        if (heroSection) {
+            heroSection.classList.add('hero-loaded');
+        }
+        
+        // Add stagger effect to hero elements
+        const heroElements = [
+            document.querySelector('[data-w-id="hero-text-meet"]'),
+            document.querySelector('[data-w-id="hero-text-black"]'),
+            document.querySelector('[data-w-id="hero-iphone"]'),
+            document.querySelector('[data-w-id="hero-content"]'),
+            document.querySelector('[data-w-id="hero-logos"]')
+        ];
+        
+        heroElements.forEach((el, index) => {
+            if (el) {
+                setTimeout(() => {
+                    el.classList.add('hero-element-loaded');
+                }, index * 200);
+            }
+        });
+    }
+
+>>>>>>> feature/website-replica
     // Initialize animations on page load
     function initAnimations() {
         // Trigger initial fade-in animations
@@ -282,7 +345,14 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
+<<<<<<< HEAD
     // Call initialization after a short delay
+=======
+    // Call hero animations immediately
+    initHeroAnimations();
+    
+    // Call other animations after a short delay
+>>>>>>> feature/website-replica
     setTimeout(initAnimations, 500);
 
     // Performance optimization: Throttle scroll events
